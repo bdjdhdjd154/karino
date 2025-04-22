@@ -7,8 +7,8 @@
   --shadow: 0 4px 3px rgba(0, 0, 0, 0.15);
   --background-linear:linear-gradient(0deg, #31848D, #F8F9FA);
   --red: #ff0606;
-  /* --linear-for-greens:linear-gradient(190deg, #f8f9fa 0%, #addbde 50%, #23a1a8 100%); */
-  --linear-for-greens:linear-gradient(38deg, #ADDBDE 50% , #23A1A8 100% );
+  --linear-for-greens:linear-gradient(190deg, #f8f9fa 0%, #addbde 50%, #23a1a8 100%);
+  /* --linear-for-greens:linear-gradient(38deg, #ADDBDE 50% , #23A1A8 100% ); */
 
 }
 * {
@@ -600,8 +600,8 @@ body {
     background: url('sorces/Frame81.svg');
     background-size: cover;
     background-repeat: no-repeat;
-    opacity: 0.5; /* شدت کدری */
-    /* z-index: 0; */
+    opacity: 0.3; /* شدت کدری */
+    z-index: 0;
 
   }
   
@@ -628,6 +628,7 @@ body {
     border-radius: 20px;
     color: var(--oil-blue);
     margin: 100px;
+    box-shadow:  0 2px 5px rgba(0, 0, 0, 0.2), 0 8px 10px rgba(0, 0, 0, 0.1);
     
 
   }
