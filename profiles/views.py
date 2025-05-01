@@ -1,31 +1,29 @@
-from rest_framework import status
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+from rest_framework import generics
+from .serializers import RegisterSerializer
 from django.contrib.auth.models import User
-from rest_framework.authtoken.models import Token
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .models import Profiles
 from .serializers import ProfileSerializer
+from rest_framework.permissions import AllowAny
 
-@api_view(['POST'])
-def register_user(request):
-    """
-    ثبت‌نام کاربر جدید
-    """
-    if request.method == 'POST':
-        # ثبت‌نام و ایجاد پروفایل جدید
-        user_serializer = ProfileSerializer(data=request.data)
-        if user_serializer.is_valid():
-            user_serializer.save() # ذخیره اطلاعات کاربر
-            user = User.objects.create_user(
-                username=request.data['username'],
-                password=request.data['password']
-            )
-            token = Token.objects.create(user=user) # ایجاد توکن
-            return Response({
-                'user': user_serializer.data,
-                'token': token.key
-            }, status=status.HTTP_201_CREATED)
-        return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class ProfileListCreateView(APIView):
+    def get(self, request):
+        profiles = Profiles.objects.all()
+        serializer = ProfileSerializer(profiles, many=True)
+        return Response(serializer.data)
 
+    def post(self, request):
+        serializer = ProfileSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class RegisterView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = RegisterSerializer
+    permission_classes= [AllowAny]
 
 
 
