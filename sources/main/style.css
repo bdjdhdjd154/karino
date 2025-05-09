@@ -17,6 +17,7 @@
   padding: 0;
   font-family: 'Vazir', sans-serif;
   /* overflow-x: hidden; */
+  /* all: unset; */
 }
 
 body {
@@ -192,6 +193,7 @@ body {
   font-weight: bold;
 }
 .nav-center{
+  all: unset;
   padding-left: 3px;
   border-left: 3px solid #000000;
   color: #000000;
@@ -424,7 +426,11 @@ body {
     width: 100%;
   }
   .job-info a{
+    all: unset;
+    color: #333;
+    cursor: pointer;
     width: 80px;
+    font-size:80%;
   }
 
   .more{
@@ -545,6 +551,7 @@ body {
     box-shadow: var(--shadow);
     padding: 20px;
     width: 400px;
+    height: 200px;
     text-align: center;
     direction: rtl;
   }
@@ -568,30 +575,42 @@ body {
   }
 /* section 6 */
   .stats{
-      display: flex;
+      /* display: flex; */
       /* flex-wrap: wrap; */
-      flex-direction: row;
+      /* flex-direction: row;
       justify-items: center;
       justify-content: center;
       gap: 20px;
-      /* height: auto; */
-      margin: 5% auto;
+      height: auto; */
+      /* margin: 5% auto;
       max-width: 900px;
-      /* flex-wrap: wrap; */
+      flex-wrap: wrap; */
       
   }
-  .stat-box {
-    position: relative;
+   .stat-box {
+    /* position: relative; */
     overflow: hidden;
-    width: 25%;
-    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    
+    /* flex-direction: row; */
+    /* gap: 10px; */
+    /* padding-left: 60px;
+    padding-right: 60px; */
+    width: 100%;
     align-items: center;
     justify-items: center;
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-
+    /* border-radius: 10px;
+    box-shadow: var(--shadow); */
   }
-  
+  .stat-box img{
+    /* overflow: hidden; */
+    display: block;
+    height: auto;
+    width: 50%;
+    max-width: 100%;   
+  }
+  /* 
   .stat-box::before {
     content: "";
     position: absolute;
@@ -601,7 +620,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     opacity: 0.3; /* شدت کدری */
-    z-index: 0;
+    /* z-index: 0;
 
   }
   
@@ -620,7 +639,7 @@ body {
 
     /* font-weight: bold; */
     /* font-family: va; */
-  }
+  /* } */ 
   /* section7 */
   .faq-section {
     background: linear-gradient(135deg, #1aa8a1, #90d3cf);
