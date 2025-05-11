@@ -272,7 +272,7 @@ body {
     font-size: large;
     opacity: 1;
   }
-  .filter-list{
+  .categories{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -280,8 +280,8 @@ body {
     justify-content: center;
     justify-items:center;
   }
-  .filter-card{
-    background: var(--green-font);
+  .categories button{
+    /* background: var(--green-font);
     border-radius: 15px;
     margin: 20px;
     align-items: center;
@@ -289,8 +289,17 @@ body {
     box-shadow: var(--shadow);
     cursor: pointer;
     border:none;
-    /* transition: transform 0.3s ease; */
+    transition: transform 0.3s ease; */
+    background: var(--green-font);
+    box-shadow: var(--shadow);
+    margin-top: 20px;
 
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    white-space: nowrap;
+    cursor: pointer;
 
   }
   /* .filter-card :hover{
