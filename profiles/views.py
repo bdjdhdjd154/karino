@@ -45,7 +45,18 @@ class MyProfileView(APIView):
 
         serializer = ProfileSerializer(profile)
         return Response(serializer.data)
-        
+class ProfileDetailView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        try:
+            profile = Profiles.objects.get(user=request.user)
+            serializer = ProfileSerializer(profile)
+            return Response(serializer.data)
+        except Profiles.DoesNotExist:
+            return Response({"error": "Profile not found"}, status=404)        
+
+
             
 
 

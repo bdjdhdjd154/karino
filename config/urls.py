@@ -32,6 +32,7 @@ urlpatterns = [
     path('api/login/', obtain_auth_token, name='api_token_auth'),
     path('login/',CustomAuthToken.as_view(), name='login'),
     path('api/profile/', include('profiles.urls')),
+    path('api/', include('profiles.urls')),
 
 
 ]
