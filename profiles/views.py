@@ -55,7 +55,13 @@ class ProfileDetailView(APIView):
             return Response(serializer.data)
         except Profiles.DoesNotExist:
             return Response({"error": "Profile not found"}, status=404)        
+class ProfileUpdateView(generics.RetrieveUpdateAPIView):
+    queryset = Profiles.objects.all()
+    serializer_class = ProfileSerializer
+    permission_classes = [IsAuthenticated]
 
+    def get_object(self):
+        return self.request.user.profiles
 
             
 

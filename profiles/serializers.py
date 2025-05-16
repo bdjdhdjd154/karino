@@ -5,11 +5,12 @@ from .models import Profiles
 class RegisterSerializer(serializers.ModelSerializer):
     first_name = serializers.CharField(write_only=True)
     last_name = serializers.CharField(write_only=True)
+    phone_number=serializers.IntegerField(write_only=True)
     email = serializers.EmailField(write_only=True)
 
     class Meta:
         model = User
-        fields = ['username', 'password', 'email','first_name', 'last_name']
+        fields = ['username', 'password', 'email','first_name', 'last_name' , 'phone_number']
         extra_kwargs = {
             'password': {'write_only': True}
         }
@@ -17,6 +18,7 @@ class RegisterSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         first_name = validated_data.pop('first_name')
         last_name = validated_data.pop('last_name')
+        phone_number=validated_data.pop('phone_number' , None)
         email = validated_data.pop('email')
 
         user = User.objects.create_user(
@@ -30,7 +32,8 @@ class RegisterSerializer(serializers.ModelSerializer):
         Profiles.objects.create(
             user=user,
             first_name=first_name,
-            last_name=last_name
+            last_name=last_name,
+            phone_number=phone_number
         )
 
         return user
