@@ -1,9 +1,10 @@
 from django.urls import path ,include
-from rest_framework.routers import DefaultRouter
-from .views import CompanyViewSet
-router=DefaultRouter()
-router.register(r'company', CompanyViewSet, basename='company')
+from .views import CompanyRegisterView, MyCompanyProfileView
+from .views import LogoutView
+
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('register/', CompanyRegisterView.as_view(), name='company-register'),
+    path('me/', MyCompanyProfileView.as_view(), name='my-company-profile'),
+    path('logout/', LogoutView.as_view(), name='logout'),
 ]
