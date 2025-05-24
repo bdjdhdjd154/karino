@@ -1,10 +1,5 @@
 from django.urls import path
-from main import views
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView
-)
+from main.views import home
 urlpatterns=[
-    path('', views.main, name='main'),
-    path('api/')
+    path('', home, name='home')
 ]

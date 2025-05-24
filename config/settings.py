@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,7 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
-    'company'
+    'main',
     
     
 ]
@@ -65,11 +66,17 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'config.urls'
+BASE_DIR=Path(__file__).resolve().parent.parent
+STATIC_URL='/static/'
+STATICFILES_DIRS=[
+    os.path.join(BASE_DIR, 'main', 'statics')
+]
+
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'main', 'templates', 'main')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,7 +87,7 @@ TEMPLATES = [
         },
     },
 ]
-
+STATICFILES_DIRS=[os.path.join(BASE_DIR, 'static')]
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
