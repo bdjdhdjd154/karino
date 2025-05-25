@@ -1,0 +1,13 @@
+@import url('https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css');
+:root{
+  --border-color: linear-gradient(90deg, #11F0FC 9%, #479aec 25%, #00ff8c 100%);
+  --main-background:#949ea913;
+  --green-font:#31848D;
+  --oil-blue:#042637;
+  --shadow: 0 4px 3px rgba(0, 0, 0, 0.15);
+  --background-linear:linear-gradient(0deg, #31848D, #F8F9FA);
+  --red: #ff0606;
+  --linear-for-greens:linear-gradient(190deg, #f8f9fa 0%, #addbde 50%, #23a1a8 100%);
+  /* --linear-for-greens:linear-gradient(38deg, #ADDBDE 50% , #23A1A8 100% ); */
+
+}
