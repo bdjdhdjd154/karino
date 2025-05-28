@@ -1,19 +1,73 @@
+
 document.addEventListener("DOMContentLoaded", () => {
-  const doc = document;
-  const login_btn = doc.getElementById('login-btn');
-  const loginForm = doc.getElementById('login-form');
-  const rgister = doc.getElementById('rgister');
+  const loginForm = document.getElementById("login-form");
+  // const overlaproup = document.getElementById("overlap-group");
+  const loginBtn = document.getElementById("login-btn");
+  const registerBtn = document.getElementById("rgister");
+  const resetPasswordBtn = document.getElementById("reset-password");
 
-  login_btn.addEventListener("click", () => {
-    loginForm.innerHTML = `<div class="sucsses">
-      <h1>ورود با موفقیت انجام شد.</h1>
-      <h2>در حال انتقال به محتوای صفحه اصلی</h2>
-      <img src="image/wait.svg" alt="">
-    </div>`;
-  });
+  // تابع نمایش پیام موفقیت
+  function showSuccessMessage(message) {
+    loginForm.innerHTML = `
+      <div class="sucsses">
+        <h1 style="font-size:4rem;">${message} </h1>
+        <img src="./image/smile.svg" class='smile'>
+        
+        <h2>در حال انتقال به محتوای صفحه اصلی</h2>
+        <img src="image/wait.svg" alt="" class="wait">
+      </div>
+    `;
+  }
 
-  rgister.addEventListener('click', (event) => {
-    event.preventDefault();
+  // تابع ساخت فرم ورود اولیه
+  function showLoginForm() {
+    showSuccessMessage("ورود با موفقیت انجام شد.");
+  }
+
+  // فرم ثبت‌نام کارفرما
+  function showEmployerForm() {
+    loginForm.innerHTML = `
+      <div class="div-2">
+        <input class="text-wrapper" placeholder="نام کاربری"><hr>
+      </div>
+      <div class="div-3">
+        <input class="text-wrapper-2" placeholder="رمز عبور"><hr>
+      </div>
+      <div class="div-3">
+        <input class="text-wrapper-2" placeholder="آدرس ایمیل"><hr>
+      </div>
+      <div class="div-3">
+        <input class="text-wrapper-2" placeholder="آدرس شرکت"><hr>
+      </div>
+      <div class="div-6">
+        <button id="submit-btn"><div class="text-wrapper-5">ارسال</div></button>
+      </div>
+    `;
+    document.getElementById("submit-btn").addEventListener("click", () => {
+      showSuccessMessage("ورود با موفقیت انجام شد.");
+    });
+  }
+
+  // فرم ثبت‌نام کارجو
+  function showJobSeekerForm() {
+    loginForm.innerHTML = `
+      <div class="div-2">
+        <input class="text-wrapper" placeholder="نام کاربری"><hr>
+      </div>
+      <div class="div-3">
+        <input class="text-wrapper-2" placeholder="رمز عبور"><hr>
+      </div>
+      <div class="div-6">
+        <button id="submit-btn"><div class="text-wrapper-5">ارسال</div></button>
+      </div>
+    `;
+    document.getElementById("submit-btn").addEventListener("click", () => {
+      showSuccessMessage("ورود با موفقیت انجام شد.");
+    });
+  }
+
+  // فرم انتخاب نقش (کارجو/کارفرما)
+  function showRoleSelector() {
     loginForm.innerHTML = `
       <div class="div-6">
         <button id="employers-btn"><div class="text-wrapper-5">ورود کارفرمایان</div></button>
@@ -21,71 +75,40 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
 
-    const employers = document.getElementById('employers-btn');
-    const jobseekers = document.getElementById('job-seekers-btn');
+    document.getElementById("employers-btn").addEventListener("click", showEmployerForm);
+    document.getElementById("job-seekers-btn").addEventListener("click", showJobSeekerForm);
+  }
 
-    employers.addEventListener('click', () => {
-      loginForm.innerHTML = `
-        <div class="div-2">
-          <input class="text-wrapper" placeholder="نام کاربری:">
-          <hr>
-        </div>
-        <div class="div-3">
-          <input class="text-wrapper-2" placeholder="رمز عبور:">
-          <hr>
-        </div>
-        <div class="div-3">
-          <input class="text-wrapper-2" placeholder="آدرس ایمیل:">
-          <hr>
-        </div>
-        <div class="div-3">
-          <input class="text-wrapper-2" placeholder="آدرس شرکت:">
-          <hr>
-          <div class="div-6">
-            <button id="login-btn"><div class="text-wrapper-5">ارسال</div></button>
-          </div>
-        </div>
-      `;
-
-      // ✨ بعد از اضافه شدن فرم، دکمه ارسال رو انتخاب کن و براش رویداد تعریف کن
-      const submitBtn = document.getElementById('login-btn');
-      submitBtn.addEventListener('click', () => {
-        loginForm.innerHTML = `<div class="sucsses">
-          <h1>ورود با موفقیت انجام شد.</h1>
-          <h2>در حال انتقال به محتوای صفحه اصلی</h2>
-          <img src="image/wait.svg" alt="">
-        </div>`;
-      });
+  // فرم بازیابی رمز عبور
+  function showResetPasswordForm() {
+    loginForm.innerHTML = `
+      <div class="div-2">
+        <input class="text-wrapper" placeholder="شماره تلفن"><hr>
+      </div>
+      <div class="div-3">
+        <input class="text-wrapper-2" placeholder="رمز عبور"><hr>
+      </div>
+      <div class="div-3">
+        <input class="text-wrapper-2" placeholder="تکرار رمز عبور"><hr>
+      </div>
+      <div class="div-6">
+        <button id="submit-btn"><div class="text-wrapper-5">ارسال</div></button>
+      </div>
+    `;
+    document.getElementById("submit-btn").addEventListener("click", () => {
+      showSuccessMessage("رمز عبور با موفقیت تغییر کرد.");
     });
+  }
 
-    jobseekers.addEventListener('click', () => {
-      loginForm.innerHTML = `
-      
-        <div class="div-2">
-          <input class="text-wrapper" placeholder="شماره تلفن:">
-          <hr>
-        </div>
-        <div class="div-3">
-          <input class="text-wrapper-2" placeholder="رمز عبور:">
-          <hr>
-        </div>
-          <div class="div-6">
-            <button id="login-btn"><div class="text-wrapper-5">ارسال</div></button>
-          </div>
-        </div>
-      `;
-    
-    
-      // ✨ بعد از اضافه شدن فرم، دکمه ارسال رو انتخاب کن و براش رویداد تعریف کن
-      const submitBtn = document.getElementById('login-btn');
-      submitBtn.addEventListener('click', () => {
-        loginForm.innerHTML = `<div class="sucsses">
-          <h1>ورود با موفقیت انجام شد.</h1>
-          <h2>در حال انتقال به محتوای صفحه اصلی</h2>
-          <img src="image/wait.svg" alt="">
-        </div>`;
-      });
-
+  // رویدادها
+  loginBtn.addEventListener("click", showLoginForm);
+  registerBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    showRoleSelector();
   });
+  resetPasswordBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    showResetPasswordForm();
   });
 });
+

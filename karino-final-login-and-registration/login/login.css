@@ -328,12 +328,16 @@
   font-weight: 400;
 }
 
-.sucsses img {
+.wait {
   width: 100px;
   height: 100px;
   animation: spin 2s linear infinite;
 }
 
+.smile{
+  width: 40%;
+  animation: none;
+}
 /* انیمیشن چرخش تصویر */
 @keyframes spin {
   0% { transform: rotate(0deg); }
