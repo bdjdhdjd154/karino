@@ -1,0 +1,89 @@
+!DOCTYPE html>
+<html lang="fa">
+<head>
+  <link rel="stylesheet" href="css/styleguide.css">
+  <meta charset="UTF-8">
+  <title>ثبت نام</title>
+  <style>
+    body { font-family: sans-serif; direction: rtl; padding: 20px; }
+    .text-wrapper, .text-wrapper-2 { width: 100%; padding: 10px; margin: 5px 0; }
+    .div-6, .div-2, .div-3 { margin-top: 15px; }
+    button { padding: 10px 20px; cursor: pointer; margin-left: 10px; }
+    .success { color: green; margin-top: 15px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <div id="loginForm"></div>
+
+  <script>
+    const loginForm = document.getElementById("loginForm");
+
+    // ✅ پیام موفقیت
+    function showSuccessMessage(message) {
+      const msg = document.createElement("p");
+      msg.className = "success";
+      msg.textContent = message;
+      loginForm.appendChild(msg);
+    }
+
+    // ✅ فرم ثبت‌نام کارجو
+    function showJobSeekerForm() {
+      loginForm.innerHTML = `
+        <div class="div-2">
+          <input class="text-wrapper" placeholder="نام کاربری"><hr>
+        </div>
+        <div class="div-3">
+          <input type="password" class="text-wrapper-2" placeholder="رمز عبور"><hr>
+        </div>
+        <div class="div-6">
+          <button id="submit-btn"><div class="text-wrapper-5">ارسال</div></button>
+        </div>
+      `;
+      document.getElementById("submit-btn").addEventListener("click", () => {
+        showSuccessMessage("ورود کارجو با موفقیت انجام شد.");
+      });
+    }
+
+    // ✅ فرم ثبت‌نام کارفرما
+    function showEmployerForm() {
+      loginForm.innerHTML = `
+        <div class="div-2">
+          <input class="text-wrapper" placeholder="نام کاربری"><hr>
+        </div>
+        <div class="div-3">
+          <input type="password" class="text-wrapper-2" placeholder="رمز عبور"><hr>
+        </div>
+        <div class="div-3">
+          <input class="text-wrapper-2" placeholder="آدرس ایمیل"><hr>
+        </div>
+        <div class="div-3">
+          <input class="text-wrapper-2" placeholder="آدرس شرکت"><hr>
+        </div>
+        <div class="div-6">
+          <button id="submit-btn"><div class="text-wrapper-5">ارسال</div></button>
+        </div>
+      `;
+      document.getElementById("submit-btn").addEventListener("click", () => {
+        showSuccessMessage("ورود کارفرما با موفقیت انجام شد.");
+      });
+    }
+
+    // ✅ فرم انتخاب نقش
+    function showRoleSelector() {
+      loginForm.innerHTML = `
+        <div class="div-6">
+          <button id="employers-btn"><div class="text-wrapper-5">ورود کارفرمایان</div></button>
+          <button id="job-seekers-btn"><div class="text-wrapper-5">ورود کارجویان</div></button>
+        </div>
+      `;
+      document.getElementById("employers-btn").addEventListener("click", showEmployerForm);
+      document.getElementById("job-seekers-btn").addEventListener("click", showJobSeekerForm);
+    }
+
+    // ✅ نمایش فرم انتخاب نقش به‌صورت پیش‌فرض
+    window.onload = showRoleSelector;
+  </script>
+<script src="register.js"></script>
+</body>
+</html>
