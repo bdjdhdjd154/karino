@@ -1,15 +1,17 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fa">
 <head>
-  <link rel="stylesheet" href="css/styleguide.css">
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>ثبت نام</title>
+  {% load static %}
+  <script src="register.js" defer></script>
   <style>
     body { font-family: sans-serif; direction: rtl; padding: 20px; }
     .text-wrapper, .text-wrapper-2 { width: 100%; padding: 10px; margin: 5px 0; }
     .div-6, .div-2, .div-3 { margin-top: 15px; }
     button { padding: 10px 20px; cursor: pointer; margin-left: 10px; }
     .success { color: green; margin-top: 15px; font-weight: bold; }
+    .error { color: red; margin-top: 15px; font-weight: bold; }
   </style>
 </head>
 <body>
@@ -19,57 +21,80 @@
   <script>
     const loginForm = document.getElementById("loginForm");
 
-    // ✅ پیام موفقیت
-    function showSuccessMessage(message) {
+    function showMessage(message, isSuccess = true) {
       const msg = document.createElement("p");
-      msg.className = "success";
+      msg.className = isSuccess ? "success" : "error";
       msg.textContent = message;
       loginForm.appendChild(msg);
     }
 
-    // ✅ فرم ثبت‌نام کارجو
+    function sendRegisterData(data, url) {
+      fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      })
+      .then(res => {
+        if (!res.ok) throw new Error("ثبت‌نام ناموفق بود.");
+        return res.json();
+      })
+      .then(data => {
+        showMessage("ثبت‌نام با موفقیت انجام شد!");
+        console.log("نتیجه:", data);
+      })
+      .catch(err => {
+        showMessage("خطا: " + err.message, false);
+      });
+    }
+
     function showJobSeekerForm() {
       loginForm.innerHTML = `
-        <div class="div-2">
-          <input class="text-wrapper" placeholder="نام کاربری"><hr>
-        </div>
-        <div class="div-3">
-          <input type="password" class="text-wrapper-2" placeholder="رمز عبور"><hr>
-        </div>
-        <div class="div-6">
-          <button id="submit-btn"><div class="text-wrapper-5">ارسال</div></button>
-        </div>
+        <div class="div-2"><input id="username" class="text-wrapper" placeholder="نام کاربری"></div><hr>
+        <div class="div-3"><input id="password" type="password" class="text-wrapper-2" placeholder="رمز عبور"></div><hr>
+        <div class="div-3"><input id="email" class="text-wrapper-2" placeholder="ایمیل"></div><hr>
+        <div class="div-3"><input id="first_name" class="text-wrapper-2" placeholder="نام"></div><hr>
+        <div class="div-3"><input id="last_name" class="text-wrapper-2" placeholder="نام خانوادگی"></div><hr>
+        <div class="div-3"><input id="phone_number" class="text-wrapper-2" placeholder="شماره تماس"><hr></div>
+        <div class="div-6"><button id="submit-btn"><div class="text-wrapper-5">ارسال</div></button></div>
       `;
       document.getElementById("submit-btn").addEventListener("click", () => {
-        showSuccessMessage("ورود کارجو با موفقیت انجام شد.");
+        const data = {
+          username: document.getElementById("username").value,
+          password: document.getElementById("password").value,
+          email: document.getElementById("email").value,
+          first_name: document.getElementById("first_name").value,
+          last_name: document.getElementById("last_name").value,
+          phone_number:document.getElementById("phone_number").value,
+        };
+        sendRegisterData(data, "http://127.0.0.1:8000/api/register/");
       });
     }
 
-    // ✅ فرم ثبت‌نام کارفرما
     function showEmployerForm() {
       loginForm.innerHTML = `
-        <div class="div-2">
-          <input class="text-wrapper" placeholder="نام کاربری"><hr>
-        </div>
-        <div class="div-3">
-          <input type="password" class="text-wrapper-2" placeholder="رمز عبور"><hr>
-        </div>
-        <div class="div-3">
-          <input class="text-wrapper-2" placeholder="آدرس ایمیل"><hr>
-        </div>
-        <div class="div-3">
-          <input class="text-wrapper-2" placeholder="آدرس شرکت"><hr>
-        </div>
-        <div class="div-6">
-          <button id="submit-btn"><div class="text-wrapper-5">ارسال</div></button>
-        </div>
+        <div class="div-2"><input id="username" class="text-wrapper" placeholder="نام کاربری"></div><hr>
+        <div class="div-3"><input id="password" type="password" class="text-wrapper-2" placeholder="رمز عبور"></div><hr>
+        <div class="div-3"><input id="email" class="text-wrapper-2" placeholder="ایمیل"></div><hr>
+        <div class="div-3"><input id="website" class="text-wrapper-2" placeholder="وب‌سایت"></div><hr>
+        <div class="div-3"><input id="phone_number" class="text-wrapper-2" placeholder="شماره تماس"></div><hr>
+        <div class="div-3"><input id="company_name" class="text-wrapper-2" placeholder="نام شرکت"></div><hr>
+        <div class="div-3"><input id="address" class="text-wrapper-2" placeholder="آدرس شرکت"></div><hr>
+        <div class="div-6"><button id="submit-btn"><div class="text-wrapper-5">ارسال</div></button></div>
       `;
       document.getElementById("submit-btn").addEventListener("click", () => {
-        showSuccessMessage("ورود کارفرما با موفقیت انجام شد.");
+        const data = {
+          username: document.getElementById("username").value,
+          password: document.getElementById("password").value,
+          email: document.getElementById("email").value,
+          website: document.getElementById("website").value,
+          phone_number: document.getElementById("phone_number").value,
+          company_name: document.getElementById("company_name").value,
+          address: document.getElementById("address").value,
+        };
+        sendRegisterData(data, "http://127.0.0.1:8000/api/register/company");
       });
     }
 
-    // ✅ فرم انتخاب نقش
     function showRoleSelector() {
       loginForm.innerHTML = `
         <div class="div-6">
@@ -81,9 +106,8 @@
       document.getElementById("job-seekers-btn").addEventListener("click", showJobSeekerForm);
     }
 
-    // ✅ نمایش فرم انتخاب نقش به‌صورت پیش‌فرض
     window.onload = showRoleSelector;
   </script>
-<script src="register.js"></script>
+
 </body>
 </html>
