@@ -1,18 +1,10 @@
 from django.urls import path
-from .views import ProfileListCreateView
-from .views import RegisterView
-from .views import MyProfileView
-from .views import ProfileDetailView
-from .views import ProfileUpdateView
-from .views import LogoutView
-
+from . import views
 
 urlpatterns = [
-    path('profiles/', ProfileListCreateView.as_view(), name='profile-list'),
-    path('register/', RegisterView.as_view(), name='register'),
-    path('me/', MyProfileView.as_view(), name='my-profile'),
-    path('profile/', ProfileDetailView.as_view(), name='profile-detail'),
-    path('profile/', ProfileUpdateView.as_view(), name='profile-update'),
-    path('logout/', LogoutView.as_view(), name='logout'),
-
+    path('register/', views.register_view, name='register'),  # 🔹 توجه: class-based
+    path('me/', views.MyProfileView.as_view(), name='my-profile'),
+    path('profile/', views.ProfileDetailView.as_view(), name='profile-detail'),
+    path('profile/update/', views.ProfileUpdateView.as_view(), name='profile-update'),  # جداش کن
+    path('logout/', views.LogoutView.as_view(), name='logout'),
 ]
