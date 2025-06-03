@@ -1,18 +1,45 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fa">
 <head>
+  <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/styleguide.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/global.css' %}" />
   <meta charset="UTF-8" />
   <title>ثبت نام</title>
-  {% load static %}
-  <script src="register.js" defer></script>
-  <style>
-    body { font-family: sans-serif; direction: rtl; padding: 20px; }
-    .text-wrapper, .text-wrapper-2 { width: 100%; padding: 10px; margin: 5px 0; }
-    .div-6, .div-2, .div-3 { margin-top: 15px; }
-    button { padding: 10px 20px; cursor: pointer; margin-left: 10px; }
-    .success { color: green; margin-top: 15px; font-weight: bold; }
-    .error { color: red; margin-top: 15px; font-weight: bold; }
+  <style> 
+    body {
+      font-family: sans-serif;
+      direction: rtl;
+      padding: 20px;
+    }
+    .text-wrapper, .text-wrapper-2 {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+    }
+    .div-6, .div-2, .div-3 {
+      margin-top: 15px;
+    }
+    button {
+      padding: 10px 20px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    .success {
+      color: green;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    .error {
+      color: red;
+      margin-top: 15px;
+      font-weight: bold;
+    }
   </style>
+  <script>
+
+</script>
 </head>
 <body>
 
@@ -29,9 +56,12 @@
     }
 
     function sendRegisterData(data, url) {
-      fetch(url, {
+      fetch("http://127.0.0.1:8000/api/register/", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+        
+          "Content-Type":"application/json",
+        },
         body: JSON.stringify(data)
       })
       .then(res => {
@@ -39,23 +69,51 @@
         return res.json();
       })
       .then(data => {
-        showMessage("ثبت‌نام با موفقیت انجام شد!");
-        console.log("نتیجه:", data);
-      })
+    console.log("ثبت‌نام موفق:", data);
+    showMessage("ثبت‌نام با موفقیت انجام شد.", true);
+  })
       .catch(err => {
         showMessage("خطا: " + err.message, false);
       });
     }
+    function handleRegisterResponse(response) {
+    const msgBox = document.getElementById('message') || document.createElement('div');
+    msgBox.id = 'message';
+    msgBox.innerHTML = ''; // پاک‌سازی پیام‌های قبلی
+    msgBox.style.marginTop = '15px';
+
+    if (response.success) {
+        msgBox.style.color = 'green';
+        msgBox.innerText = response.message;
+
+        // ساختن دکمه رفتن به صفحه اصلی
+        const homeBtn = document.createElement('button');
+        homeBtn.innerText = 'رفتن به صفحه اصلی';
+        homeBtn.style.marginRight = '10px';
+        homeBtn.onclick = () => {
+            window.location.href = '/main/firstpage';
+        };
+
+        msgBox.appendChild(document.createElement('br'));
+        msgBox.appendChild(homeBtn);
+    } else {
+        msgBox.style.color = 'red';
+        msgBox.innerText = response.error;
+    }
+
+    document.getElementById('loginForm').appendChild(msgBox);
+}
+
 
     function showJobSeekerForm() {
       loginForm.innerHTML = `
-        <div class="div-2"><input id="username" class="text-wrapper" placeholder="نام کاربری"></div><hr>
-        <div class="div-3"><input id="password" type="password" class="text-wrapper-2" placeholder="رمز عبور"></div><hr>
-        <div class="div-3"><input id="email" class="text-wrapper-2" placeholder="ایمیل"></div><hr>
-        <div class="div-3"><input id="first_name" class="text-wrapper-2" placeholder="نام"></div><hr>
-        <div class="div-3"><input id="last_name" class="text-wrapper-2" placeholder="نام خانوادگی"></div><hr>
-        <div class="div-3"><input id="phone_number" class="text-wrapper-2" placeholder="شماره تماس"><hr></div>
-        <div class="div-6"><button id="submit-btn"><div class="text-wrapper-5">ارسال</div></button></div>
+        <div class="div-2"><input id="username" class="text-wrapper" placeholder="نام کاربری"></div>
+        <div class="div-3"><input id="password" type="password" class="text-wrapper-2" placeholder="رمز عبور"></div>
+        <div class="div-3"><input id="email" class="text-wrapper-2" placeholder="ایمیل"></div>
+        <div class="div-3"><input id="first_name" class="text-wrapper-2" placeholder="نام"></div>
+        <div class="div-3"><input id="last_name" class="text-wrapper-2" placeholder="نام خانوادگی"></div>
+        <div class="div-3"><input id="phone_number" class="text-wrapper-2" placeholder="شماره تماس"></div>
+        <div class="div-6"><button id="submit-btn">ارسال</button></div>
       `;
       document.getElementById("submit-btn").addEventListener("click", () => {
         const data = {
@@ -64,45 +122,45 @@
           email: document.getElementById("email").value,
           first_name: document.getElementById("first_name").value,
           last_name: document.getElementById("last_name").value,
-          phone_number:document.getElementById("phone_number").value,
+          phone_number: document.getElementById("phone_number").value,
         };
         sendRegisterData(data, "http://127.0.0.1:8000/api/register/");
       });
     }
 
-    function showEmployerForm() {
-      loginForm.innerHTML = `
-        <div class="div-2"><input id="username" class="text-wrapper" placeholder="نام کاربری"></div><hr>
-        <div class="div-3"><input id="password" type="password" class="text-wrapper-2" placeholder="رمز عبور"></div><hr>
-        <div class="div-3"><input id="email" class="text-wrapper-2" placeholder="ایمیل"></div><hr>
-        <div class="div-3"><input id="website" class="text-wrapper-2" placeholder="وب‌سایت"></div><hr>
-        <div class="div-3"><input id="phone_number" class="text-wrapper-2" placeholder="شماره تماس"></div><hr>
-        <div class="div-3"><input id="company_name" class="text-wrapper-2" placeholder="نام شرکت"></div><hr>
-        <div class="div-3"><input id="address" class="text-wrapper-2" placeholder="آدرس شرکت"></div><hr>
-        <div class="div-6"><button id="submit-btn"><div class="text-wrapper-5">ارسال</div></button></div>
-      `;
-      document.getElementById("submit-btn").addEventListener("click", () => {
-        const data = {
-          username: document.getElementById("username").value,
-          password: document.getElementById("password").value,
-          email: document.getElementById("email").value,
-          website: document.getElementById("website").value,
-          phone_number: document.getElementById("phone_number").value,
-          company_name: document.getElementById("company_name").value,
-          address: document.getElementById("address").value,
-        };
-        sendRegisterData(data, "http://127.0.0.1:8000/api/register/company");
-      });
-    }
+  //  function showEmployerForm() {
+   //   loginForm.innerHTML = `
+   //     <div class="div-2"><input id="username" class="text-wrapper" placeholder="نام کاربری"></div>
+   //     <div class="div-3"><input id="password" type="password" class="text-wrapper-2" placeholder="رمز عبور"></div>
+   //     <div class="div-3"><input id="email" class="text-wrapper-2" placeholder="ایمیل"></div>
+   //     <div class="div-3"><input id="website" class="text-wrapper-2" placeholder="وب‌سایت"></div>
+    //    <div class="div-3"><input id="phone_number" class="text-wrapper-2" placeholder="شماره تماس"></div>
+    //    <div class="div-3"><input id="company_name" class="text-wrapper-2" placeholder="نام شرکت"></div>
+    //    <div class="div-3"><input id="address" class="text-wrapper-2" placeholder="آدرس شرکت"></div>
+    //    <div class="div-6"><button id="submit-btn">ارسال</button></div>
+    //  `;
+   //   document.getElementById("submit-btn").addEventListener("click", () => {
+     //   const data = {
+     //     username: document.getElementById("username").value,
+     //     password: document.getElementById("password").value,
+      //    email: document.getElementById("email").value,
+      //    website: document.getElementById("website").value,
+     //     phone_number: document.getElementById("phone_number").value,
+       //   company_name: document.getElementById("company_name").value,
+      //    address: document.getElementById("address").value,
+    //    };
+    //    sendRegisterData(data, "http://127.0.0.1:8000/api/register/company");
+    //  });
+ //   }
 
     function showRoleSelector() {
       loginForm.innerHTML = `
         <div class="div-6">
-          <button id="employers-btn"><div class="text-wrapper-5">ورود کارفرمایان</div></button>
-          <button id="job-seekers-btn"><div class="text-wrapper-5">ورود کارجویان</div></button>
+          <button id="employers-btn">ورود کارفرمایان</button>
+          <button id="job-seekers-btn">ورود کارجویان</button>
         </div>
       `;
-      document.getElementById("employers-btn").addEventListener("click", showEmployerForm);
+    //  document.getElementById("employers-btn").addEventListener("click", showEmployerForm);
       document.getElementById("job-seekers-btn").addEventListener("click", showJobSeekerForm);
     }
 

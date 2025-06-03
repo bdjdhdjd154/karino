@@ -2,21 +2,20 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
- <link rel="stylesheet" href="{% static 'css/login.css' %}">
  <link rel="stylesheet" href="{% static 'css/styleguide.css' %}">
  <link rel="stylesheet" href="{% static 'css/global.css' %}">
+ <link rel="stylesheet" href="{% static 'css/login.css' %}">
+ 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ورود</title>
-  <link rel="stylesheet" href="global.css" />
-  <link rel="stylesheet" href="styleguide.css" />
-  <link rel="stylesheet" href="./login.css" />
+  
 </head>
 <body>
   <div class="frame">
     <div class="overlap-group">
-      <img class="download" src="./image/download (1) 1.svg" />
-      <img class="image" src="./image/image2 1.svg" />
+      <img class="download" src="{% static 'image/download (1) 1.svg' %}" />
+      <img class="image" src="{% static 'image/image2 1.svg' %}" />
 
       <div class="div" id="login-form">
         <form id="loginForm">
@@ -33,7 +32,7 @@
             <div class="div-wrapper">
               <div class="div-4">
                 <div class="div-5">
-                  <div class="fluent-color"><img class="group" src="./image/Group.svg" /></div>
+                  <div class="fluent-color"><img class="group" src="{% static 'image/Group.svg' %}" /></div>
                   <div class="div-wrapper-2">
                     <p class="p">
                       <span class="span">رمز عبور را </span>
@@ -56,9 +55,12 @@
           </div>
 
           <div class="div-6">
-            <button id="login-btn" type="submit">
-              <div class="text-wrapper-5">ورود</div>
-            </button>
+            <form method="post" action="/login/">
+  {% csrf_token %}
+  <input name="username" />
+  <input name="password" type="password" />
+  <button type="submit">ورود</button>
+</form>
             <p class="div-7">
               <span class="span">حساب کاربری ندارید؟&nbsp;همین الان </span>
               <a class="text-wrapper-3" id="register">ثبت نام</a>
@@ -87,7 +89,7 @@
         if (res.ok) {
           localStorage.setItem("token", data.token);
           alert("ورود موفق!");
-          window.location.href = "/dashboard";
+          window.location.href="/karino/";
         } else {
           throw new Error(data.detail || "ورود ناموفق");
         }
@@ -96,6 +98,7 @@
         alert("خطا: " + err.message);
       });
     });
+    
   </script>
 </body>
 </html>
