@@ -1,5 +1,5 @@
 body{
-zoom: 55%;
+zoom: 62%;
 background-color: rgba(148, 158, 169, 0.08);
 overflow-x: hidden;
 
@@ -174,7 +174,7 @@ color: rgb(156, 190, 190);
   .frame2 .div2 {
     display: flex;
     width: 1236px;
-    height: 186px;
+    height: 194px;
     align-items: center;
     justify-content: flex-end;
     gap: 130px;
@@ -183,7 +183,13 @@ color: rgb(156, 190, 190);
     left: 223px;
  
   }
-  
+
+  .reg{
+    font-size: 30px;
+  }  
+  .log{
+    font-size: 30px;
+  }
   .frame2 .div-22 {
     position: relative;
     width: 244px;
@@ -230,7 +236,7 @@ color: rgb(156, 190, 190);
   
   .frame2 .overlap-group2 {
     position: relative;
-    width: 159px;
+    width: 259px;
     height: 160px;
     top: 3166px;
     left: -1151px;
@@ -2321,8 +2327,8 @@ margin-top: 100px;
   color: var(--oil-blue);
   margin: 100px;
   box-shadow:  0 2px 5px rgba(0, 0, 0, 0.2), 0 8px 10px rgba(0, 0, 0, 0.1);
-  
-
+  width: 2100px;
+margin-right: 40px;
 }
 
 .faq-container {
@@ -2332,6 +2338,7 @@ margin-top: 100px;
   gap: 30px;
   font-size: 53px;
   text-align: right;
+  
 }
 
 .faq-container img{
@@ -2377,6 +2384,11 @@ details p {
   color: white;
   padding: 40px 20px;
   text-align: center;
+display: flex;
+justify-content: center;
+align-items: center;
+width: 2600px;;
+
 }
 
 .footer-container {

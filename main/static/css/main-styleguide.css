@@ -1,0 +1,19 @@
+:root {
+  --b-w2f2f2f: rgba(47, 47, 47, 1);
+  --variable-collection-180: rgba(255, 107, 107, 1);
+  --variable-collection-main-font: rgba(74, 74, 74, 1);
+  --variable-collection-main-fo: rgba(170, 170, 170, 1);
+  --variable-collection-font-color: rgba(74, 74, 74, 1);
+  --variable-collection-light-bg: rgba(248, 249, 250, 1);
+  --variable-collection-c: rgba(244, 162, 89, 1);
+  --variable-collection-font-bold-c: var(--variable-collection-c);
+  --variable-collection-primary: rgba(49, 132, 141, 1);
+  --variable-collection-accent: rgba(0, 248, 188, 1);
+  --variable-collection-main: rgba(166, 95, 70, 1);
+  --variable-collection-emphatic: rgba(0, 150, 136, 1);
+  --variable-collection-ajori: rgba(108, 44, 30, 1);
+  --variable-collection: rgba(4, 38, 55, 1);
+  --variable-collection-sabz: rgba(35, 174, 109, 1);
+  --variable-collection-red: rgba(255, 6, 6, 1);
+  --variable-collection-kerem: rgba(241, 237, 225, 1);
+}
