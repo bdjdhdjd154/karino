@@ -2,9 +2,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="{% static 'css/gelobal.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/guied.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/karino.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/globals.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/styleguide.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/karino.css' %}" >
     <meta charset="utf-8" />
   </head>
   <body>
@@ -18,14 +18,14 @@
                   <div class="frame-2">
                     <div class="frame-3">
                       <div class="overlap-group-2">
-                        <div class="group-wrapper"><img class="group" src="{% static 'sorces/Group.svg' %}" /></div>
+                        <div class="group-wrapper"><img class="group" src="" /></div>
                         <div class="undraw-businesswoman">
                           <div class="clip-path-group-wrapper">
                             <img class="clip-path-group" src="{% static 'sorces/undraw_businesswoman-avatar_ktl2 1.svg' %}" />
                           </div>
                         </div>
                       </div>
-                      <div class="text-wrapper">زهرا سجادی</div>
+                      <div class="text-wrapper">کاربر</div>
                     </div>
                     <div class="overlap-2">
                       <div class="frame-4">
@@ -61,10 +61,14 @@
                             <img class="img" src="{% static 'sorces/ix_support.svg' %}" />
                           </div>
                         </div>
-                        <div class="frame-11">
-                          <div class="text-wrapper-1000">خروج از حساب کاربری</div>
-                          <img class="img4" src="{% static 'sorces/material-symbols_logout-rounded.svg' %}" />
+                        <div class="frame-11" id="logoutBtn" style="cursor: pointer;">
+                       <a href="{% url 'logout' %}">
+                      <button class="logout">خروج از حساب </button>
+                           </a>
+                        <img class="img4" src="{% static 'sorces/material-symbols_logout-rounded.svg' %}" alt="logout icon" />
                         </div>
+
+                     
                       </div>
                       <div class="frame-12">
                         <div class="text-wrapper-6">موجودی کیف پول</div>
@@ -73,7 +77,7 @@
                       </div>
                     </div>
                   </div>
-                  <img class="line" src="{% static 'sorces/img/line-6.svg' %}" />
+                  <img class="line" src="" />
                   <div class="text-wrapper-9">جمعه 8 فروردین 1404</div>
                 </div>
               </div>
@@ -103,7 +107,7 @@
                     <div class="text-wrapper-16">0%</div>
                   </div>
                 </div>
-                <img class="rectangle" src="{% static 'sorces/Rectangle.svg' %}" />
+                <img class="rectangle" src="{% static 'sorces/Rectangle 16 (1).svg' %}" />
               </div>
               <div class="frame-20">
                 <div class="text-wrapper-14">اموزش Git</div>
@@ -118,7 +122,7 @@
                     <div class="text-wrapper-16">0%</div>
                   </div>
                 </div>
-                <img class="rectangle" src="{% static 'sorces/Rectangle.svg' %}" />
+                <img class="rectangle" src="{% static 'sorces/Rectangle 16 (1).svg' %}" />
               </div>
               <div class="frame-21">
                 <div class="text-wrapper-17">اموزش Git</div>
@@ -133,7 +137,7 @@
                     <div class="text-wrapper-18">0%</div>
                   </div>
                 </div>
-                <img class="rectangle" src="{% static 'sorces/Rectangle.svg' %}" />
+                <img class="rectangle" src="{% static 'sorces/Rectangle 16 (1).svg' %}" />
               </div>
               <div class="frame-22">
                 <div class="text-wrapper-17">اموزش Git</div>
@@ -148,7 +152,7 @@
                     <div class="text-wrapper-18">0%</div>
                   </div>
                 </div>
-                <img class="rectangle" src="{% static 'sorces/fa6-regular_circle-play' %}" />
+                <img class="rectangle" src="{% static 'sorces/Rectangle 16 (1).svg' %}" />
               </div>
               <div class="frame-23">
                 <div class="text-wrapper-17">اموزش Git</div>
@@ -163,7 +167,7 @@
                     <div class="text-wrapper-18">0%</div>
                   </div>
                 </div>
-                <img class="rectangle" src="{% static 'sorces/Rectangle.svg' %}" />
+                <img class="rectangle" src="{% static 'sorces/Rectangle 16 (1).svg' %}" />
               </div>
             </div>
           </div>
@@ -172,20 +176,20 @@
             <div class="text-wrapper-20">مسیر یادگیری من</div>
             <div class="text-wrapper-20">همه دوره های من</div>
           </div>
-          <img class="line-2" src="{% static 'sorces/line-6.svg' %}" />
+          <img class="line-2" src="" />
           <div class="frame-25">
             <div class="frame-26">
               <div class="text-wrapper-21">جدیدترین دوره ها</div>
-              <img class="lucide-chevron-down" src="{% static 'sorces/Vector.svg' %}" />
+              <img class="lucide-chevron-down" src="{% static 'sorces/Vector (1).svg' %}" />
             </div>
             <div class="frame-27">
               <div class="text-wrapper-22">نوع دوره</div>
-              <img class="lucide-chevron-down-2" src="{% static 'sorces/Vector.svg' %}" />
+              <img class="lucide-chevron-down-2" src="{% static 'sorces/Vector (1).svg' %}" />
             </div>
             <div class="frame-27">
               <div class="text-wrapper-23">وضعیت</div>
               <div class="lucide-chevron-down-wrapper">
-                <img class="lucide-chevron-down-3" src="{% static 'sorces/Vector.svg' %}" />
+                <img class="lucide-chevron-down-3" src="{% static 'sorces/Vector (1).svg' %}" />
               </div>
             </div>
           </div>
@@ -202,10 +206,13 @@
                 <div class="text-wrapper-16">0%</div>
               </div>
             </div>
-            <img class="rectangle" src="{% static 'sorces/Rectangle.svg' %}" />
+            <img class="rectangle" src="{% static 'sorces/Rectangle 16 (1).svg' %}" />
           </div>
         </div>
       </div>
     </div>
+ <script src="{% static 'js/logout.js' %}"></script>
+
   </body>
+   
 </html>

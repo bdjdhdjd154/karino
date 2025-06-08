@@ -108,7 +108,7 @@ function handleRegisterResponse(response) {
         homeBtn.innerText = 'رفتن به صفحه اصلی';
         homeBtn.style.marginRight = '10px';
         homeBtn.onclick = () => {
-            window.location.href = '/';
+            window.location.href = '/main/firstpage';
         };
 
         msgBox.appendChild(document.createElement('br'));
