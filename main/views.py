@@ -64,5 +64,13 @@ def myregister_view(request):
         return redirect('main/login')
 
     return render(request, 'main/register.html')
+def intership_view(request):
+    return render(request, 'intership.html')
+def employer_view(request):
+    return render(request, 'employer.html' )
+def reg2_view(request):
+    return render(request, 'reg2.html')
+
+
    
 
